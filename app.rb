@@ -14,3 +14,8 @@ set :port, 4567
 set :bind, '0.0.0.0'
 
 set :servername, "localhost:4567"
+
+after do 
+  ActiveRecord::Base.clear_active_connections!
+  ActiveRecord::Base.connection.close
+end
