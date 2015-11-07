@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'geokit'
+gem 'googlestaticmap'
+gem "rqrcode"
 gem "rerun"
 gem "thin"
 gem "sinatra"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106232308) do
+ActiveRecord::Schema.define(version: 20151107142913) do
 
   create_table "tickets", force: :cascade do |t|
     t.string   "aid"
@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20151106232308) do
     t.string   "tvr"
     t.float    "vat"
     t.float    "amount"
+    t.string   "url"
+    t.string   "geo"
+    t.text     "map"
+    t.text     "qrcode"
   end
 
 end

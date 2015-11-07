@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require 'json'
+require 'rqrcode'
+require 'base64'
+require 'geokit'
+require 'googlestaticmap'
 require 'require_all'
 
 require_all 'models'
