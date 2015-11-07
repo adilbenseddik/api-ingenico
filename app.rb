@@ -13,7 +13,7 @@ require_all 'controllers'
 set :port, 4567
 set :bind, '0.0.0.0'
 
-set :servername, "localhost:4567"
+set :servername, "ingenico.spiir.me"
 
 after do 
   ActiveRecord::Base.clear_active_connections!

@@ -10,13 +10,13 @@ post '/api/tickets' do
   ticket = Ticket.create aid: params["aid"], date: DateTime.parse(params[:date]), trader_name: params[:trader_name], trader_address: params[:trader_address], client_name: params[:client_name], authorization_number: params[:authorization_number], type_of_card: params[:type_of_card], tvr: params[:tvr], vat: params[:vat].to_f, amount: params["amount"].to_f
 
   if ticket.valid?
-    qrcode = RQRCode::QRCode.new("http://#{settings.servername}/#{ticket.id}")
+    qrcode = RQRCode::QRCode.new("https://#{settings.servername}/api/tickets/#{ticket.id}")
     ticket.qrcode = Base64.strict_encode64(qrcode.as_png.to_blob)
     ticket.geo = Geokit::Geocoders::GoogleGeocoder.geocode(ticket.trader_address).ll
     map = GoogleStaticMap.new(:width => 250, :height => 150, :center => MapLocation.new(:address => ticket.trader_address))
     map.markers << MapMarker.new(:color => "red", :location => MapLocation.new(:address => ticket.trader_address))
     ticket.map = Base64.strict_encode64(map.get_map)
-    ticket.url = "http://#{settings.servername}/#{ticket.id}"
+    ticket.url = "https://#{settings.servername}/api/tickets/#{ticket.id}"
     ticket.save
     status 201
     ticket.to_json
